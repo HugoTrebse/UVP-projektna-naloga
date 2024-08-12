@@ -4,9 +4,7 @@
 V okviru te projektne naloge bom analiziral točke ELO top 100 Šahistov od leta 2000 do leta 2024 ter analizirali določene trende pristone v teh podatkih.
 
 ## Parametrizacija URL-jev
-Za dostop do podatkov o točkah ELO (ter tudi nekaterih drugih podatkov) top 100 šahistov med leti 2000 ter 2024 bomo uporabljali spletišče Mednarodne šahovske federacije (FIDE): https://ratings.fide.com/. 
-
-V letu 2000 so bili podatki o točkah ELO najboljših 100 šahistov objavljeni vsake tri mesece (januar, april, julij ter oktober), trenutno pa so podatki objavljeni mesečno. 
+Za dostop do tabele, ki vsebuje podatke o točkah ELO (ter tudi nekatere druge podatke) najboljših 100 šahistov med leti 2000 ter 2024, bomo uporabljali spletišče Mednarodne šahovske federacije (FIDE): https://ratings.fide.com/. 
 
 Tipična URL povezava do tabele za dani mesec je oblike: https://ratings.fide.com/toparc.phtml?cod=1 ; kjer končnica cod=num parametrizira zaporedni vnos podatkov. Opaziomo, da v odvisnosti od num modulo 4 dobimo sledeče kategorije šahistov:
 
@@ -27,7 +25,7 @@ Z nekaj ročne analize ugotovimo, da so med julijem leta 2000 (num=1) in julijem
 |    6x letno     | september 2009 - maj 2012 | 149 - 213|
 |    12x letno    | julij 2012 - | 217  - |
 
-Sedaj lahko uspešno ustvarimo funkcijo, ki iz indeksa num pridobi datum kategerga je bila objavljena tabela.
+Sedaj lahko uspešno ustvarimo funkcijo, ki iz indeksa num pridobi mesec kategerga je bila objavljena tabela.
 
 **TODO:**
 - [ ] Zajem podatkov ter kreacija ustreznega razreda
