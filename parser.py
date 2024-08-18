@@ -3,8 +3,7 @@ import requests
 import csv
 import os.path
 
-meseci = ['Januar', 'Februar', 'Marec', 'April', 'Maj', 'Junij', 'Julij', 'Avgust', 'September', 'Oktober', 'November', 'December']
-
+meseci = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 obstojeci_sahisti = set()
 
@@ -37,22 +36,34 @@ def dekompozicija(snippet):
         leto_rojstva = razdelitev.group(6)
     return ime, naziv, drzava, rating, st_iger, leto_rojstva
 
+def date_extractor(html):
+    vzorec = r'contentheading" width="100%">\n\s*Top 100 Players (\w+) (\d+)'
+    datum = re.search(vzorec, html)
+    leto = datum.group(2)
+    mesec = meseci.index(datum.group(1)) + 1
+    if mesec < 10:
+        mesec = '0' + str(mesec)
+    return f'{mesec}-{leto}'
+
+with open('html_test_2.txt', 'r') as dat:
+    print(date_extractor(dat.read()))
+
 #treba je ustvarit en csv, ki bo vesboval ID-je, imena ter priimke ter leta rojstva za vse sahiste - NORMALIZACIJA
 #morda je potem obstojeci_sahisti redundant, ampak whatever.
 
 
+
 trenutno = requests.get('https://ratings.fide.com/toparc.phtml?cod=797')
-vsebina = trenutno.text 
+vsebina = trenutno.text
 
 magnus = '=#ffffff><td width=10>&nbsp;1</a></td><td>&nbsp;Carlsen, Magnus</td><td>&nbsp;g</td><td>&nbsp;NOR</td><td>&nbsp;2832</td><td>&nbsp;0</td><td>&nbsp;1990</td></tr><tr'
 decomposed_magnus = dekompozicija(magnus)
 
 #poiskus, ustvarimo .csv samo za Magnusa
-parent_path = r'C:\Users\hugot\Documents\FMF\1. letnik\UVP-projektna-naloga\podatkovna_baza'
-with open(f'{parent_path}{decomposed_magnus[0]}', 'w') as dat:
+parent_path = r'C:\Users\hugot\Documents\FMF\1_letnik\UVP-projektna-naloga\podatkovna_baza'
+with open(os.path.join(parent_path, decomposed_magnus[0]), 'w') as dat:
     pisalec = csv.writer(dat)
     pisalec.writerow([str(decomposed_magnus[2]), str(decomposed_magnus[3]), str(decomposed_magnus[4])])
-
 
 #shranjevanje podatkov: v .csv datoteko. Ime datoteke bo prvoime_prvipriimek, posamezna vrstica je indeksirana po mesecu ter letu, v vrstici je še rating in nacionalnost
 #Za date of birth, naziv, ter popolne podatke o imenu (morebitno drugo ime ter drugi priimek) bomo pa shranili v data type sahist, ali pa v en massive seznam, katerega vnosi so slovarji 
