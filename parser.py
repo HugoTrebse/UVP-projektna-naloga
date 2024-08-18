@@ -5,7 +5,9 @@ import csv
 meseci = ['Januar', 'Februar', 'Marec', 'April', 'Maj', 'Junij', 'Julij', 'Avgust', 'September', 'Oktober', 'November', 'December']
 
 
-obstojeci_sahisti = []
+obstojeci_sahisti = set()
+
+#funkciji sirote_txt ter sirote_str sprejmeta html kodo ter iz družine podatkov o posameznem igralcu ustvarita seznam podatkov, vnosi katerega vsebujejo podatke o posameznem šahistu
 
 def sirote_txt(txt_file):
 #opomba za prihodnje - input txt_file, ki je ime datoteke, ki jo želimo osirotiti, more biti nujno STRING, ki vsebuje ime datoteke.
