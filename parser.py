@@ -1,6 +1,7 @@
 import re
 import requests
 import csv
+import os.path
 
 meseci = ['Januar', 'Februar', 'Marec', 'April', 'Maj', 'Junij', 'Julij', 'Avgust', 'September', 'Oktober', 'November', 'December']
 
@@ -36,12 +37,21 @@ def dekompozicija(snippet):
         leto_rojstva = razdelitev.group(6)
     return ime, naziv, drzava, rating, st_iger, leto_rojstva
 
+#treba je ustvarit en csv, ki bo vesboval ID-je, imena ter priimke ter leta rojstva za vse sahiste - NORMALIZACIJA
+#morda je potem obstojeci_sahisti redundant, ampak whatever.
+
+
 trenutno = requests.get('https://ratings.fide.com/toparc.phtml?cod=797')
 vsebina = trenutno.text 
 
 magnus = '=#ffffff><td width=10>&nbsp;1</a></td><td>&nbsp;Carlsen, Magnus</td><td>&nbsp;g</td><td>&nbsp;NOR</td><td>&nbsp;2832</td><td>&nbsp;0</td><td>&nbsp;1990</td></tr><tr'
+decomposed_magnus = dekompozicija(magnus)
 
-print(dekompozicija(sirote_str(vsebina)[1]))
+#poiskus, ustvarimo .csv samo za Magnusa
+parent_path = r'C:\Users\hugot\Documents\FMF\1. letnik\UVP-projektna-naloga\podatkovna_baza'
+with open(f'{parent_path}{decomposed_magnus[0]}', 'w') as dat:
+    pisalec = csv.writer(dat)
+    pisalec.writerow([str(decomposed_magnus[2]), str(decomposed_magnus[3]), str(decomposed_magnus[4])])
 
 
 #shranjevanje podatkov: v .csv datoteko. Ime datoteke bo prvoime_prvipriimek, posamezna vrstica je indeksirana po mesecu ter letu, v vrstici je še rating in nacionalnost
