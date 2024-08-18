@@ -22,7 +22,7 @@ Z nekaj ročne analize ugotovimo, da so med julijem leta 2000 (num=1) in julijem
 |   Pogostost    |  Trajanje  | num |
 | -------- | ------- | --------- |
 |    3x letno     |  julij 2000 - julij 2009  | 1 - 145 |
-|    6x letno     | september 2009 - maj 2012 | 149 - 213|
+|    6x letno     | september 2009 - maj 2012 | 145 - 217|
 |    12x letno    | julij 2012 - | 217  - |
 
 Sedaj lahko uspešno ustvarimo funkcijo, ki iz indeksa num pridobi mesec kategerga je bila objavljena tabela.
