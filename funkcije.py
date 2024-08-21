@@ -11,6 +11,7 @@ def sirote_str(str_file):
     sirote = re.split(r'bgcolor', str_file)
     odvecno = int(sirote[-1].index('<span class="article_separator">&nbsp;</span>') - 25)
     sirote[-1] = sirote[-1][0: odvecno]
+    del sirote[0]
     return sirote
 
 def dekompozicija(snippet):
@@ -38,10 +39,8 @@ def date_extractor(html):
 #nespremenljive podatke kot so ime, naziv, ter leto rojstva shranimo v en seperate .csv, podatke, ki so odvisni od časa, kot so rating, trenutni cas ter državljanstvo pa v .csv 
 #(drzavljanstvo je dejansko spremenljivo; pimer je Richard Rapoport, ki je prešel iz Madžarske v Romunsko šahovsko zvezo)
 
-obstojeci_sahisti = set()
-
 #Ustvarimo funkcijo, ki bo nespremenljive podatke o sahistu shranila v neko globalno .csv datoteko.
-def splosna_evidenca(ime, leto_rojstva):
+def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
     if not(ime in obstojeci_sahisti):
         obstojeci_sahisti.add(ime)
         with open(os.path.join(parent_path_shallow, 'sahisti'), 'w') as dat:
