@@ -43,7 +43,7 @@ def date_extractor(html):
 def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
     if not(ime in obstojeci_sahisti):
         obstojeci_sahisti.add(ime)
-        with open(os.path.join(parent_path_shallow, 'sahisti'), 'w') as dat:
+        with open(os.path.join(parent_path_shallow, 'sahisti'), 'a') as dat:
             pisalec = csv.writer(dat)
             pisalec.writerow([ime, leto_rojstva])
         with open(os.path.join(parent_path, str(ime)), 'w') as dat2:
