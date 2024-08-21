@@ -6,7 +6,7 @@ obstojeci_sahisti = set()
 
 parent_html = r'https://ratings.fide.com/toparc.phtml?cod='
 
-for i in range(200):
+for i in range(199):
     r = requests.get(f'{parent_html}{797-4*i}')
     vsebina = r.text
     #v tej spremenljivki je HTML

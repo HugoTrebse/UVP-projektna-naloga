@@ -9,7 +9,10 @@ parent_path_shallow = r'C:\Users\hugot\Documents\FMF\1_letnik\UVP-projektna-nalo
     
 def sirote_str(str_file):
     sirote = re.split(r'bgcolor', str_file)
-    odvecno = int(sirote[-1].index('<span class="article_separator">&nbsp;</span>') - 25)
+    if '<span class="article_separator">&nbsp;</span>' in str_file:
+        odvecno = int(sirote[-1].index('<span class="article_separator">&nbsp;</span>') - 25)
+    else:
+        odvecno = -1
     sirote[-1] = sirote[-1][0: odvecno]
     del sirote[0]
     return sirote
@@ -43,15 +46,15 @@ def date_extractor(html):
 def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
     if not(ime in obstojeci_sahisti):
         obstojeci_sahisti.add(ime)
-        with open(os.path.join(parent_path_shallow, 'sahisti'), 'a') as dat:
+        with open(os.path.join(parent_path_shallow, 'sahisti'), 'a', newline='') as dat:
             pisalec = csv.writer(dat)
             pisalec.writerow([ime, leto_rojstva])
-        with open(os.path.join(parent_path, str(ime)), 'w') as dat2:
+        with open(os.path.join(parent_path, str(ime)), 'w', newline='') as dat2:
             pass
 #nimam najmanjše ideje zakaj ime dodaja v teh čudnih oklepajih??? - zato ker bi čene v .csv-ju bili trije podatki - prvo ime in priimek namreč loči vejica.
 
 #Ustvarimo funkcijo, ki sprejme decomposed podatke o igralcu ter jih da v ustrezen .csv, oz ga ustvari ob primeru neobstoja.
 def pisatelj_csvjev(ime ,naziv, drzava, rating, st_iger, datum):
-    with open(os.path.join(parent_path, ime), 'a') as dat:
+    with open(os.path.join(parent_path, ime), 'a', newline='') as dat:
         pisalec = csv.writer(dat)
         pisalec.writerow([datum, drzava, naziv, rating, st_iger])
