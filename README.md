@@ -1,7 +1,7 @@
 # UVP projektna naloga
 **Projektna naloga študenta Hugo Trebše za predmet Uvod v Programiranje.**
 
-V okviru te projektne naloge bom analiziral točke ELO top 100 Šahistov od leta 2000 do leta 2024 ter analizirali določene trende pristone v teh podatkih.
+V okviru te projektne naloge bom zbral točke ELO top 100 Šahistov od leta 2000 do leta 2024 ter analiziral določene trende pristone v teh podatkih.
 
 ## Parametrizacija URL-jev
 Za dostop do tabele, ki vsebuje podatke o točkah ELO (ter tudi nekatere druge podatke) najboljših 100 šahistov med leti 2000 ter 2024, bomo uporabljali spletišče Mednarodne šahovske federacije (FIDE): https://ratings.fide.com/. 
