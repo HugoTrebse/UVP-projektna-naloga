@@ -3,6 +3,8 @@
 
 V okviru te projektne naloge bom zbral točke ELO top 100 Šahistov od leta 2000 do leta 2024 ter analiziral določene trende pristone v teh podatkih.
 
+**OPOMBA**: iz neznanih razlogov je 21.08.2024 ob cca 23uri spletna stran https://ratings.fide.com/toparc.phtml?cod=1, nehala obratovati. Razlog za to mi je neznan, prav tako so spletne strani, za katere je bilo cod=i, za i>4, ostale nespremenjene.
+
 ## Uvod v https://ratings.fide.com/
 Za dostop do informacij o točkah ELO (ter tudi nekaterih drugih podatkih) najboljših 100 šahistov med leti 2000 ter 2024, bomo uporabljali spletišče Mednarodne šahovske federacije (FIDE): https://ratings.fide.com/. 
 
