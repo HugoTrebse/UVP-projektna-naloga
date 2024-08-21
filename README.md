@@ -25,8 +25,6 @@ Z nekaj ročne analize (ter z pomočjo bisekcije) ugotovimo, da so med julijem l
 |    6x letno     | september 2009 - maj 2012 | 145 - 217|
 |    12x letno    | julij 2012 - | 217  - |
 
-Sedaj lahko uspešno ustvarimo funkcijo, ki iz indeksa num pridobi mesec kategerga je bila objavljena tabela.
-
 **TODO:**
 - [x] Zajem podatkov ter kreacija ustreznega razreda
     - [x] Prenašanje ustreznih HMTL strani
