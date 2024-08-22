@@ -20,16 +20,17 @@ def sirote(str_file):
 
 #Iz niza, ki ga vrne funkcija sirote, izlušči podatke
 def dekompozicija(snippet):
-    vzorec = r'&nbsp;([^<]+)</td><td>&nbsp;([^<]+)</td><td>&nbsp;([^<]+)</td><td>&nbsp;(\d+)</td><td>&nbsp;(\d+)</td><td>&nbsp;(\d+)'
+    vzorec = r'<td width=10>&nbsp;(\d+)</a></td><td>&nbsp;([^<]+)</td><td>&nbsp;([^<]+)</td><td>&nbsp;([^<]+)</td><td>&nbsp;(\d+)</td><td>&nbsp;(\d+)</td><td>&nbsp;(\d+)'
     razdelitev = re.search(vzorec, snippet)
     if razdelitev:
-        ime = razdelitev.group(1)
-        naziv = razdelitev.group(2)
-        drzava = razdelitev.group(3)
-        rating = razdelitev.group(4)
-        st_iger = razdelitev.group(5)
-        leto_rojstva = razdelitev.group(6)
-    return ime, naziv, drzava, rating, st_iger, leto_rojstva
+        rank = razdelitev.group(1)
+        ime = razdelitev.group(2)
+        naziv = razdelitev.group(3)
+        drzava = razdelitev.group(4)
+        rating = razdelitev.group(5)
+        st_iger = razdelitev.group(6)
+        leto_rojstva = razdelitev.group(7)
+    return ime, naziv, drzava, rank, rating, st_iger, leto_rojstva
 
 #iz HMTL kode dobi datum
 def date_extractor(html):
@@ -60,4 +61,4 @@ def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
 def pisatelj_csvjev(array, datum):
     with open(os.path.join(parent_path, array[0]), 'a', newline='') as dat:
         pisalec = csv.writer(dat)
-        pisalec.writerow([datum, array[2], array[1], array[3], array[4]])
+        pisalec.writerow([datum, array[2], array[1], array[3], array[4], array[5]])
