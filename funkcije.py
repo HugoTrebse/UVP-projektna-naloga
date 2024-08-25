@@ -52,7 +52,7 @@ def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
         obstojeci_sahisti.add(ime)
         with open(os.path.join(parent_path_shallow, 'sahisti'), 'a', newline='') as dat:
             pisalec = csv.writer(dat)
-            pisalec.writerow([ime.strip('"'), leto_rojstva])
+            pisalec.writerow([ime, leto_rojstva])
         with open(os.path.join(parent_path, ime.replace(' ', '_')), 'w', newline='') as dat2:
             pisalec = csv.writer(dat2)
             pisalec.writerow(['datum', 'drzava', 'naziv', 'rank', 'rating', 'stevilo iger'])
