@@ -24,7 +24,7 @@ def dekompozicija(snippet):
     razdelitev = re.search(vzorec, snippet)
     if razdelitev:
         rank = razdelitev.group(1)
-        ime = razdelitev.group(2).replace(',', '')
+        ime = razdelitev.group(2)
         naziv = razdelitev.group(3)
         drzava = razdelitev.group(4)
         rating = razdelitev.group(5)
