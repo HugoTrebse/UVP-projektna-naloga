@@ -24,7 +24,7 @@ def dekompozicija(snippet):
     razdelitev = re.search(vzorec, snippet)
     if razdelitev:
         rank = razdelitev.group(1)
-        ime = razdelitev.group(2)
+        ime = razdelitev.group(2).replace(',', '')
         naziv = razdelitev.group(3)
         drzava = razdelitev.group(4)
         rating = razdelitev.group(5)
@@ -53,12 +53,13 @@ def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
         with open(os.path.join(parent_path_shallow, 'sahisti'), 'a', newline='') as dat:
             pisalec = csv.writer(dat)
             pisalec.writerow([ime, leto_rojstva])
-        with open(os.path.join(parent_path, str(ime)), 'w', newline='') as dat2:
-            pass
+        with open(os.path.join(parent_path, ime.replace(' ', '_')), 'w', newline='') as dat2:
+            pisalec = csv.writer(dat)
+            pisalec.writerow(['datum', 'drzava', 'naziv', 'rank', 'rating', 'stevilo iger'])
 # Zakaj so vnosi v .csv datoteke oblike "priimek, ime",leto? Če ne bi bil podatek str(priimek, ime) v .csv formatu v resnici dva podatka.
 
 #Ustvarimo funkcijo, ki sprejme podatke o igralcu (kot jih vrne funkcija dekompozicija) ter jih da v ustrezen .csv, oz ga ustvari ob primeru neobstoja.
 def pisatelj_csvjev(array, datum):
-    with open(os.path.join(parent_path, array[0]), 'a', newline='') as dat:
+    with open(os.path.join(parent_path, array[0].replace(' ', '_')), 'a', newline='') as dat:
         pisalec = csv.writer(dat)
         pisalec.writerow([datum, array[2], array[1], array[3], array[4], array[5]])
