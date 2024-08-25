@@ -34,7 +34,7 @@ def dekompozicija(snippet):
 
 #iz HMTL kode dobi datum
 def date_extractor(html):
-    vzorec = r'contentheading" width="100%">\n\s*Top 100 Players (\w+) (\d+)'
+    vzorec = r'\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})\b'
     datum = re.search(vzorec, html)
     leto = datum.group(2)
     mesec = meseci.index(datum.group(1)) + 1
@@ -54,7 +54,7 @@ def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
             pisalec = csv.writer(dat)
             pisalec.writerow([ime, leto_rojstva])
         with open(os.path.join(parent_path, ime.replace(' ', '_')), 'w', newline='') as dat2:
-            pisalec = csv.writer(dat)
+            pisalec = csv.writer(dat2)
             pisalec.writerow(['datum', 'drzava', 'naziv', 'rank', 'rating', 'stevilo iger'])
 # Zakaj so vnosi v .csv datoteke oblike "priimek, ime",leto? Če ne bi bil podatek str(priimek, ime) v .csv formatu v resnici dva podatka.
 
