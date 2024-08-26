@@ -3,7 +3,7 @@
 
 V okviru te projektne naloge bom zbral točke ELO top 100 Šahistov od leta 2000 do leta 2024 ter analiziral določene trende pristone v teh podatkih.
 
-## Uvod v https://ratings.fide.com/
+## Kako izgleda HTML spletišča https://ratings.fide.com/
 Za dostop do informacij o točkah ELO (ter tudi nekaterih drugih podatkih) najboljših 100 šahistov med leti 2000 ter 2024, bomo uporabljali spletišče Mednarodne šahovske federacije (FIDE): https://ratings.fide.com/. 
 
 Tipična URL povezava do tabele za dani mesec je oblike: https://ratings.fide.com/toparc.phtml?cod=1 ; kjer končnica cod=num parametrizira zaporedni vnos podatkov. Opaziomo, da v odvisnosti od num modulo 4 dobimo sledeče kategorije šahistov:
