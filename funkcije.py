@@ -24,12 +24,15 @@ def dekompozicija(snippet):
     razdelitev = re.search(vzorec, snippet)
     if razdelitev:
         rank = razdelitev.group(1)
-        ime = razdelitev.group(2)
+        ime = razdelitev.group(2).replace('.','')
+        #Morda se sprašujete zakaj je zgornji .replace potreben. Odgovor je, da če dopustimo pike v imenih, pride do težav pri analizi z programom pandas, 
+        #saj smatra piko kot delimiter, tudi če delimiterje manualno nastavimo zgolj na vejice. Sicer pa ne zgubimo nobenih informacij, saj se imena kot so
+        # 'Adhiban, B.' zgolj spremenijo v 'Adhiban, B'
         naziv = razdelitev.group(3)
         drzava = razdelitev.group(4)
         rating = razdelitev.group(5)
         st_iger = razdelitev.group(6)
-        leto_rojstva = int(razdelitev.group(7))
+        leto_rojstva = razdelitev.group(7)
     return ime, naziv, drzava, rank, rating, st_iger, leto_rojstva
 
 #iz HMTL kode dobi datum
