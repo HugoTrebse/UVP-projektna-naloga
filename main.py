@@ -1,10 +1,15 @@
 import requests
 import funkcije
-# funkcije uporabimo tako: funkcije.ime_funkcije_ki_jo_uporabimo
+import csv
+import os
+
 obstojeci_sahisti = set()
-
-
+parent_path_shallow = r'C:\Users\hugot\Documents\FMF\1_letnik\UVP-projektna-naloga'
 parent_html = r'https://ratings.fide.com/toparc.phtml?cod='
+
+with open(os.path.join(parent_path_shallow, 'sahisti'), 'w', newline='') as dat:
+    pisalec = csv.writer(dat)
+    pisalec.writerow(['Ime', 'Leto rojstva'])
 
 for i in range(200):
     r = requests.get(f'{parent_html}{797-4*i}')

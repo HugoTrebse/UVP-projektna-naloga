@@ -18,7 +18,7 @@ def sirote(str_file):
     del sirote[0]
     return sirote
 
-#Iz niza, ki ga vrne funkcija sirote, izlušči podatke
+#Iz niza, ki ga vrne funkcija sirote, izlušči podatke o posameznem šahistu
 def dekompozicija(snippet):
     vzorec = r'<td width=10>&nbsp;(\d+)</a></td><td>&nbsp;([^<]+)</td><td>&nbsp;([^<]+)</td><td>&nbsp;([^<]+)</td><td>&nbsp;(\d+)</td><td>&nbsp;(\d+)</td><td>&nbsp;(\d+)'
     razdelitev = re.search(vzorec, snippet)
@@ -29,7 +29,7 @@ def dekompozicija(snippet):
         drzava = razdelitev.group(4)
         rating = razdelitev.group(5)
         st_iger = razdelitev.group(6)
-        leto_rojstva = razdelitev.group(7)
+        leto_rojstva = int(razdelitev.group(7))
     return ime, naziv, drzava, rank, rating, st_iger, leto_rojstva
 
 #iz HMTL kode dobi datum
@@ -43,7 +43,7 @@ def date_extractor(html):
     return f'{mesec}-{leto}'
 
 
-#nespremenljive podatke kot so ime, naziv, ter leto rojstva shranimo v nek globalen .csv, podatke, ki so odvisni od časa, kot so rating, trenutni cas ter državljanstvo pa v .csv 
+#nespremenljive podatke kot sta ime ter leto rojstva shranimo v sahisti.csv, podatke, ki so odvisni od časa, kot so datum, naziv, rating, ter državljanstvo pa v .csv 
 #(drzavljanstvo je dejansko spremenljivo; pimer je Richard Rapoport, ki je prešel iz Madžarske v Romunsko šahovsko zvezo)
 
 #Ustvarimo funkcijo, ki bo nespremenljive podatke o sahistu shranila v neko globalno .csv datoteko.
@@ -58,7 +58,7 @@ def splosna_evidenca(ime, leto_rojstva, obstojeci_sahisti):
             pisalec.writerow(['datum', 'drzava', 'naziv', 'rank', 'rating', 'stevilo iger'])
 # Zakaj so vnosi v .csv datoteke oblike "priimek, ime",leto? Če ne bi bil podatek str(priimek, ime) v .csv formatu v resnici dva podatka.
 
-#Ustvarimo funkcijo, ki sprejme podatke o igralcu (kot jih vrne funkcija dekompozicija) ter jih da v ustrezen .csv, oz ga ustvari ob primeru neobstoja.
+#Ustvarimo funkcijo, ki sprejme podatke o igralcu (kot jih vrne funkcija dekompozicija) ter jih zapiše v ustrezen .csv.
 def pisatelj_csvjev(array, datum):
     with open(os.path.join(parent_path, array[0].replace(' ', '_')), 'a', newline='') as dat:
         pisalec = csv.writer(dat)
