@@ -24,11 +24,3 @@ Z nekaj ročne analize (ter z pomočjo bisekcije) ugotovimo, da so med julijem l
 |    3x letno     |  julij 2000 - julij 2009  | 1 - 145 |
 |    6x letno     | september 2009 - maj 2012 | 145 - 217|
 |    12x letno    | julij 2012 - | 217  - |
-
-## TODO:
-- [x] Zajem podatkov ter kreacija ustreznega razreda
-    - [x] Prenašanje ustreznih HMTL strani
-    - [x] Parsing ter razporeditev v razrede
-- [ ] Analiza podatkov, vključujoče:
-  - Starost šahistov v odvisnosti od *peak* ratinga
-  - Nihanje ratinga v odvisnosti od države/starosti
