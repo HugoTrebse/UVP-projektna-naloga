@@ -1,7 +1,10 @@
 import re
 import csv
-import os.path
+import os
 
+pot_plitka = os.getcwd()
+pot_globoka =  os.path.join(pot_plitka, 'podatkovna_baza')
+pot_sahisti = os.path.join(pot_plitka, 'sahisti')
 meseci_ang = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 #Loči html kodo na podnize, ki vsebujejo relevantne podatke za enega šahista.
@@ -87,3 +90,7 @@ def starost(ime_sahista, datum):
         for vrstica in prebrana_datoteka:
             if vrstica[0] == ime_sahista:
                 return datum_v_float(datum) - vrstica[1]
+            
+#Za potrebe krajšanja v analiza_podatkov.py uvedemo naslednjo funkcijo:
+def ime_v_pot(ime):
+    return os.path.join(pot_globoka, ime.replace(' ', '_'))
