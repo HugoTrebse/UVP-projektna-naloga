@@ -3,20 +3,24 @@ import funkcije
 import csv
 import os
 
-obstojeci_sahisti = set()
-parent_path_shallow = r'C:\Users\hugot\Documents\FMF\1_letnik\UVP-projektna-naloga'
-parent_html = r'https://ratings.fide.com/toparc.phtml?cod='
+#To je spletna stran, iz katere bomo pridobivali podatke
+izvorni_html = r'https://ratings.fide.com/toparc.phtml?cod='
 
-with open(os.path.join(parent_path_shallow, 'sahisti'), 'w', newline='') as dat:
+starsevska_pot_plitka = os.getcwd()
+starsevska_pot_globoka =  os.path.join(starsevska_pot_plitka, 'podatkovna_baza')
+
+os.makedirs(starsevska_pot_globoka, exist_ok=True)
+
+with open(os.path.join(starsevska_pot_plitka, 'sahisti'), 'w', newline='') as dat:
     pisalec = csv.writer(dat)
     pisalec.writerow(['Ime', 'Leto rojstva'])
 
 for i in range(200):
-    r = requests.get(f'{parent_html}{797-4*i}')
-    vsebina = r.text
+    pridobljena_prosnja = requests.get(f'{izvorni_html}{797-4*i}')
+    vsebina = pridobljena_prosnja.text
     posamezniki = funkcije.sirote(vsebina)
-    date = funkcije.date_extractor(vsebina)
+    date = funkcije.ekstrahiranje_datumov(vsebina)
     for posameznik in posamezniki:
-        decomposed = funkcije.dekompozicija(posameznik)
-        funkcije.splosna_evidenca(decomposed[0], decomposed[6], obstojeci_sahisti)
-        funkcije.pisatelj_csvjev(decomposed, date)
+        razcepljeno = funkcije.dekompozicija(posameznik)
+        funkcije.splosna_evidenca(razcepljeno[0], razcepljeno[6], starsevska_pot_plitka)
+        funkcije.pisatelj_csvjev(razcepljeno, date, starsevska_pot_globoka)
