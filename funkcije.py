@@ -47,8 +47,7 @@ def ekstrahiranje_datumov(html):
 #(drzavljanstvo je dejansko spremenljivo; pimer je Richard Rapport, ki je prešel iz Madžarske v Romunsko šahovsko zvezo).
 
 #Ustvarimo funkcijo, ki bo nespremenljive podatke o sahistu shranila v neko globalno .csv datoteko.
-def splosna_evidenca(ime, leto_rojstva, starsevska_pot_plitka):
-    obstojeci_sahisti = set()
+def splosna_evidenca(ime, leto_rojstva, starsevska_pot_plitka, obstojeci_sahisti):
     if not(ime in obstojeci_sahisti):
         obstojeci_sahisti.add(ime)
         with open(os.path.join(starsevska_pot_plitka, 'sahisti'), 'a', newline='') as dat:

@@ -11,6 +11,8 @@ starsevska_pot_globoka =  os.path.join(starsevska_pot_plitka, 'podatkovna_baza')
 
 os.makedirs(starsevska_pot_globoka, exist_ok=True)
 
+obstojeci_sahisti = set()
+
 with open(os.path.join(starsevska_pot_plitka, 'sahisti'), 'w', newline='') as dat:
     pisalec = csv.writer(dat)
     pisalec.writerow(['Ime', 'Leto rojstva'])
@@ -22,5 +24,5 @@ for i in range(200):
     date = funkcije.ekstrahiranje_datumov(vsebina)
     for posameznik in posamezniki:
         razcepljeno = funkcije.dekompozicija(posameznik)
-        funkcije.splosna_evidenca(razcepljeno[0], razcepljeno[6], starsevska_pot_plitka)
+        funkcije.splosna_evidenca(razcepljeno[0], razcepljeno[6], starsevska_pot_plitka, obstojeci_sahisti)
         funkcije.pisatelj_csvjev(razcepljeno, date, starsevska_pot_globoka)
