@@ -1,6 +1,7 @@
 import re
 import csv
 import os
+import requests
 
 pot_plitka = os.getcwd()
 pot_globoka =  os.path.join(pot_plitka, 'podatkovna_baza')
@@ -38,13 +39,16 @@ def dekompozicija(delcek):
 
 #iz HMTL kode dobi datum
 def ekstrahiranje_datumov(html):
-    vzorec = r'\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})\b'
-    datum = re.search(vzorec, html)
-    leto = datum.group(2)
-    mesec = meseci_ang.index(datum.group(1)) + 1
-    if mesec < 10:
-        mesec = '0' + str(mesec)
-    return f'{mesec}-{leto}'
+    try:
+        vzorec = r'\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})\b'
+        datum = re.search(vzorec, html)
+        leto = datum.group(2)
+        mesec = meseci_ang.index(datum.group(1)) + 1
+        if mesec < 10:
+            mesec = '0' + str(mesec)
+        return f'{mesec}-{leto}'
+    except:
+        return None
 
 #Nespremenljive podatke kot sta ime ter leto rojstva shranimo v sahisti.csv, podatke, ki so odvisni od časa, kot so datum, naziv, rating, ter državljanstvo pa v .csv 
 #(drzavljanstvo je dejansko spremenljivo; pimer je Richard Rapport, ki je prešel iz Madžarske v Romunsko šahovsko zvezo).
@@ -67,6 +71,31 @@ def pisatelj_csvjev(array, datum, starsevska_pot_globoka):
     with open(os.path.join(starsevska_pot_globoka, array[0].replace(' ', '_')), 'a', newline='') as dat:
         pisalec = csv.writer(dat)
         pisalec.writerow([datum, array[2], array[1], array[3], array[4], array[5]])
+
+#Z nekaj preizkušanja ugotovimo, da so nekateri url-ji oblike 'https://ratings.fide.com/toparc.phtml?cod=int' za naravna števila int obstoječi, a prazni.
+#Zato na sledeč način ugorovimo kateri so uporabni za naše namene (neželene spletne strani ne vsebujejo niza 'Top 100 players').
+def legalna_FIDE_spletna_stran(url):
+    try:
+        odziv = requests.get(url)
+        html_vsebina = odziv.text
+        vzorec = r"Top\s*100\s*Players"
+        if re.search(vzorec, html_vsebina):
+            return True
+        else:
+            return False
+    except:
+        return False
+
+
+def najvisji_cod(url_prefix):
+    cod = 1
+    while True:
+        url = f'{url_prefix}{cod}'
+        if legalna_FIDE_spletna_stran(url):
+            cod += 4
+        else:
+            break
+    return cod - 4
 
 #Ustvarimo linearno urejenost na datumih (za potrebe analize)
 def datum_v_float(datum):
