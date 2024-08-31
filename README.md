@@ -1,9 +1,50 @@
 # UVP projektna naloga
 **Projektna naloga študenta Hugo Trebše za predmet Uvod v Programiranje.**
 
-V okviru te projektne naloge bom zbral točke ELO top 100 Šahistov od leta 2000 do leta 2024 ter analiziral določene trende pristone v teh podatkih.
+V okviru te projektne naloge bom zbral podatke o ELO ratingu top 100 Šahistov od leta 2000 do leta 2024 ter analiziral nekatere prisotne trende.
 
-## Kako izgleda HTML spletišča https://ratings.fide.com/
+## Navodila za uporabo
+### Python ter git
+Potreben pogoj za uspešno uporabo je nameščen Python ter git.
+Če imate Python ter git že naložen lahko preskočite ta razdelek.
+
+Za namesščanje prvega sledite navodilom na [uradni spletni strani Python-a](https://www.python.org/downloads/). Če želite preveriti, ali je bil Python uspešno naložen, napišite sledeče v ukazno vrstico.
+```console
+python --version 
+```
+Če je python uspešno naložen, boste dobili odziv podoben naslednjemu, kjer se zadnje številke lahko razlikujejo.
+```console
+Python 3.12.2
+```
+
+Za nameščanje drugega sledite postopku na [uradni spletni strani git-a](https://git-scm.com/downloads), prav tako na podoben način preverimo, ali smo git uspešno naložili:
+```console
+git --version 
+```
+Nakar dobite odziv podoben naslednjemu:
+```console
+git version 2.46.0.windows.1
+```
+### Nameščanje knjižnjic
+Potrebno je naložiti tudi nekaj knjižnjic. To storite v ukazni vrstici na naslednji način:
+```console
+pip install re requests csv os copy pandas matplotlib
+```
+### Nalaganje datotek
+Da naložite vse potrebne datoteke za uporabo v ukazno vrstico napišite:
+```console
+https://github.com/HugoTrebse/UVP-projektna-naloga.git
+```
+### Uporaba programa:
+Najprej se z ukazoma  ``` cd ``` ter ``` dir ``` orientirajte do mape, v kateri se nahajajo datoteke, ki smo jih naložili v prejšnjem koraku.
+Nato poženite naslednji ukaz:
+```console
+python main.py
+```
+### Dostop do analize podatkov
+Analiza zbranih podatkov se nahaja v datoteki ```analiza_podatkov.ipynb```.
+Datoteko lahko odpremo z poljubnim programom, ki je namenjen branju Jupyter Notebooka. Če takega programa nimate nameščenega, pa vam priporoča, da si končno obliko datoteko ogledate kar na githubu na [nasledjem linku](https://github.com/HugoTrebse/UVP-projektna-naloga/blob/main/analiza_podatkov.ipynb)
+## Izgled HTML kode spletišča https://ratings.fide.com/
 Za dostop do informacij o točkah ELO (ter tudi nekaterih drugih podatkih) najboljših 100 šahistov med leti 2000 ter 2024, bomo uporabljali spletišče Mednarodne šahovske federacije (FIDE): https://ratings.fide.com/. 
 
 Tipična URL povezava do tabele za dani mesec je oblike: https://ratings.fide.com/toparc.phtml?cod=1 ; kjer končnica cod=num parametrizira zaporedni vnos podatkov. Opaziomo, da v odvisnosti od num modulo 4 dobimo sledeče kategorije šahistov:
