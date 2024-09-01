@@ -126,7 +126,6 @@ def drzave_splosne_informacije():
             slepic(pogostost_drzav, drzava, stevec)
             drzave[drzava] = []
     stevilo_podatkov =  0
-    print(pogostost_drzav)
     for drzava, pogostost in pogostost_drzav.items():
         stevilo_podatkov += pogostost
     meja = int(stevilo_podatkov * 0.02)
