@@ -26,3 +26,8 @@ Na avtorjevem prenosniku se zbiranje podatkov, ki ga začnemo z zgornjim ukazom,
 ### Dostop do analize podatkov
 Analiza zbranih podatkov se nahaja v datoteki ```analiza_podatkov.ipynb```.
 Datoteko lahko odpremo z poljubnim programom, ki je namenjen branju Jupyter Notebooka. Če takega programa nimate nameščenega, pa vam priporočam, da si končno obliko datoteko ogledate kar na githubu na [naslednjem linku](https://github.com/HugoTrebse/UVP-projektna-naloga/blob/main/analiza_podatkov.ipynb).
+
+
+## TODO:
+Last:
+- [] Dodaj napise na grafih.
