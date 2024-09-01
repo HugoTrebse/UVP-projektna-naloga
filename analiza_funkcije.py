@@ -115,6 +115,8 @@ def slepic(slovar, kljuc, vrednost):
 
 #Ker se zdi pravično, da bi zbrani podatki o deležih šahistov iz posamezne države, odražali 'prisotnost' te države na lestvici top 100 posežemo po naslednjem načrtu.
 #Za vsakega šahista preverimo vsako vrstico v njegovem .csvju ter poglejmo za katero državo igra tedaj, nato pa te podatke zbrali v slovar.
+
+#zelel bi se info o tem kaj je največja država in ker delež informacij prispeva
 def drzave_splosne_informacije():
     drzave = {}
     pogostost_drzav = {}
@@ -125,11 +127,14 @@ def drzave_splosne_informacije():
         for drzava, stevec in stevec_drzav.items():
             slepic(pogostost_drzav, drzava, stevec)
             drzave[drzava] = []
+    trenutni_zmagovalec = (' ', 0)
     stevilo_podatkov =  0
     for drzava, pogostost in pogostost_drzav.items():
         stevilo_podatkov += pogostost
+        if pogostost > trenutni_zmagovalec[1]:
+            trenutni_zmagovalec = (drzava, pogostost)
     meja = int(stevilo_podatkov * 0.02)
-    return pogostost_drzav, drzave, stevilo_podatkov, meja
+    return pogostost_drzav, drzave, stevilo_podatkov, meja, trenutni_zmagovalec
 
 def pogostost_drzav_nad_mejo(pogostost_drzav, meja):
     drzave_nad_mejo = set()

@@ -13,15 +13,15 @@ izvnorni_fide_url = 'https://ratings.fide.com/toparc.phtml?cod='
 os.makedirs(pot_globoka, exist_ok=True)
 
 
-#maksimalni_cod = funkcije.najvisji_cod(izvnorni_fide_url)
+maksimalni_cod = funkcije.najvisji_cod(izvnorni_fide_url)
 
-#Zgoraj je zakomentirana koda, ki dobi najvišji dostopni indeks na spletišču https://ratings.fide.com/toparc.phtml?cod=indeks
-#Ker pa je program relativno časovno potraten se poslužimo že znanega dejstva, da je v avgustu 2024 najvišji dostopni indeks 797.
+#Zgornja koda dobi najvišji dostopni indeks na spletišču https://ratings.fide.com/toparc.phtml?cod=indeks
+#Če želite program pospešiti in vam ni v škodo pridobiti le podatke do Septembra 2024 pa se lahko poslužite znanega dejstva, da je Septembra 2024 maksimalni_cod = 801.
 #Seveda bi lahko algoritem, ki pridobi indeks optimizirali; npr z uporabo binary searcha, ki bi iz trenutnega linearnega časa spremenil časovno zahtevnost
 #na log_2(U), kjer je U zgornja meja za morebitni legalni indeks (tudi če imamo podatke o šahistih za vsak mesec zadnjih 100 let je U = 12000; log_2(U) = 13.55). 
 #Slednje je seveda dosti hitrejše, a znan programerski pregovor pravi: 'Premature optimization is the root of all evil'.
 
-maksimalni_cod = 797
+#maksimalni_cod = 801
 
 obstojeci_sahisti = set()
 
