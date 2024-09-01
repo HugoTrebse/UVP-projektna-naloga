@@ -107,7 +107,7 @@ def maksimum_v_povprecju_populacije(informacije, n):
             velikostni_ekstrem.append(starost)
     return velikostni_ekstrem, int(najvisji)
 
-def slepic(slovar, kljuc, vrednost):
+def dodajalec(slovar, kljuc, vrednost):
     if kljuc in slovar:
         slovar[kljuc] += vrednost
     else:
@@ -125,7 +125,7 @@ def drzave_splosne_informacije():
         prebrana_datoteka = pd.read_csv(funkcije.ime_v_pot(ime_sahista))
         stevec_drzav = prebrana_datoteka['drzava'].value_counts()
         for drzava, stevec in stevec_drzav.items():
-            slepic(pogostost_drzav, drzava, stevec)
+            dodajalec(pogostost_drzav, drzava, stevec)
             drzave[drzava] = []
     trenutni_zmagovalec = (' ', 0)
     stevilo_podatkov =  0
@@ -141,7 +141,7 @@ def pogostost_drzav_nad_mejo(pogostost_drzav, meja):
     pogostost_drzav_nad_mejo = {'preostalo': 0}
     for drzava, pogostost in pogostost_drzav.items():
         if pogostost >= meja:
-            slepic(pogostost_drzav_nad_mejo, drzava, pogostost)
+            dodajalec(pogostost_drzav_nad_mejo, drzava, pogostost)
             drzave_nad_mejo.add(drzava)
         elif pogostost < meja:
             pogostost_drzav_nad_mejo['preostalo'] += pogostost
