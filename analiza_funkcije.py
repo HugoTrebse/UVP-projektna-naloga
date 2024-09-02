@@ -155,6 +155,15 @@ def ustvarjalec_drzav(slovar):
             slovar[vrstica['drzava']].append(vrstica['rating'])
     return slovar
 
+def eksplozija(pogostost_drzav_nad_mejo, najproduktivnejsa_drzava):
+    eksplozija = []
+    for drzava, st_podatkov in pogostost_drzav_nad_mejo.items():
+        if drzava == najproduktivnejsa_drzava[0]:
+            eksplozija.append(0.1)
+        else:
+            eksplozija.append(0)
+    return eksplozija
+
 def ustvarjalec_maksimumom_drzav(slovar):
     maksimumi_drzave = {}
     for drzava, ratingi in slovar.items():
