@@ -30,4 +30,5 @@ Datoteko lahko odpremo z poljubnim programom, ki je namenjen branju Jupyter Note
 
 ## TODO:
 Last:
-- [] Dodaj napise na grafih.
+-[] Dodaj napise na grafih.
+-[] Dodaj količino podatkov v uvod.
