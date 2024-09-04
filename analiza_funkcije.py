@@ -34,6 +34,13 @@ def popravljalnik(ekvivalence, ekvivalentna_imena):
                 zdruzen_df.to_csv(funkcije.ime_v_pot(prihodnje_ime), index=False)
                 os.remove(funkcije.ime_v_pot(ime))
 
+def stevilo_vrstic(pot):
+    st_vrstic = 0
+    for filename in os.listdir(pot):
+        with open(os.path.join(pot, filename), 'r') as dat:
+            st_vrstic += sum(1 for line in dat)
+    return st_vrstic
+
 def pridobi_splosne_informacje():
     sahisti_prikaz_2 = []
     for ime_sahista, vrstica in pd.read_csv(pot_sahisti, index_col = 'Ime').iterrows():
