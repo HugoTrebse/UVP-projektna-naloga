@@ -1,5 +1,5 @@
 # UVP projektna naloga
-**Projektna naloga študenta Hugo Trebše za predmet Uvod v Programiranje.**
+**Projektna naloga pri predmetu Uvod v Programiranje.**
 
 V okviru te projektne naloge bom zbral podatke o ELO ratingu top 100 Šahistov od leta 2000 do leta 2024 ter analiziral nekatere prisotne trende.
 
