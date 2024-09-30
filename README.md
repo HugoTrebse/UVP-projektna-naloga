@@ -1,6 +1,8 @@
 # UVP projektna naloga
 **Projektna naloga pri predmetu Uvod v Programiranje.**
 
+_Komentar prihodnjim študentskim bralcem:_ profesor Marc ni imel resnih pripomb glede strukture ter izvedbe, edino o čemer me je opozoril so moji dolgi komentarji ter vprašljivo humorni vložki znotraj kode. Izgleda, da projekt dosega standarde UVP.
+
 V okviru te projektne naloge bom zbral podatke o ELO ratingu top 100 Šahistov od leta 2000 do leta 2024 ter analiziral nekatere prisotne trende.
 
 ## Navodila za uporabo
